@@ -4,6 +4,7 @@ import PersonalInfo from "./components/PersonalInfo";
 import SelectPlan from "./components/SelectPlan";
 import AddOns from "./components/AddOns";
 import { UserPlan } from "./UserContext";
+import Summary from "./components/Summary";
 
 export default function App({ container }) {
     const steps = [
@@ -25,9 +26,10 @@ export default function App({ container }) {
         {
             title: "Resumo",
             desc: "Verifique novamente se tudo está OK antes de confirmar.",
+            component: <Summary />
         },
     ];
-    const [step, setStep] = React.useState(2);
+    const [step, setStep] = React.useState(3);
 
     return (
         <div className="container">
