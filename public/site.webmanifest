@@ -1,20 +1,20 @@
 {
-    "name": "L\u00e9o React App",
-    "short_name": "L\u00e9o React App",
+    "name": "Formul\u00e1rio de m\u00faltiplas etapas",
+    "short_name": "Formul\u00e1rio de m\u00faltiplas etapas",
     "icons": [
         {
-            "src": "./android-chrome-192x192.png",
+            "src": "/android-chrome-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "./android-chrome-256x256.png",
-            "sizes": "256x256",
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
             "type": "image/png"
         }
     ],
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
-    "start_url": "https://leo-henrique.github.io/leo-react-app/",
+    "start_url": "https://leo-henrique.github.io/formulario-de-multiplas-etapas",
     "display": "standalone"
 }
