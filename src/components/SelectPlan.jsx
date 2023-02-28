@@ -3,6 +3,7 @@ import SVGArcade from "../assets/icon-arcade.svg";
 import SVGAdvanced from "../assets/icon-advanced.svg";
 import SVGPro from "../assets/icon-pro.svg";
 import { UserContext } from "../UserContext";
+import PricePerPeriod from "./Helpers/PricePerPeriod";
 
 export default function SelectPlan() {
     const plans = [
@@ -46,12 +47,11 @@ export default function SelectPlan() {
 
                             <span>{icon}</span>
                             <span>{name}</span>
-                            <small>
-                                R$
-                                {period == "month"
-                                    ? `${price.month}/mês`
-                                    : `${price.month}/ano`}
-                            </small>
+
+                            <PricePerPeriod
+                                period={period}
+                                price={price}
+                            />
 
                             {period == "year" && (
                                 <span>2 meses grátis</span>

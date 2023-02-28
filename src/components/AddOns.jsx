@@ -1,4 +1,7 @@
 import React from "react";
+import { UserContext } from "../UserContext";
+import PricePerPeriod from "./Helpers/PricePerPeriod";
+
 
 export default function AddOns() {
     const options = [
@@ -29,7 +32,8 @@ export default function AddOns() {
                 year: 100
             }
         }
-    ]
+    ];
+    const { period } = React.useContext(UserContext);
 
     return (
         <>
@@ -48,7 +52,11 @@ export default function AddOns() {
                                 <span>{desc}</span>
                             </span>
 
-                            <span>+R${price.month}/mês</span>
+                            <PricePerPeriod
+                                period={period}
+                                price={price}
+                                before="+"
+                            />
                         </label>
                     </li>
                 ))}
