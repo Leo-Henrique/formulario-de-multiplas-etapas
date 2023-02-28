@@ -2,8 +2,8 @@ body {
     @include font-size(fontSize("body"));
     line-height: 1.5;
     font-weight: 400;
-    font-family: "Poppins", sans-serif;
-    color: color("supportLight2");
+    font-family: 'Ubuntu', sans-serif;
+    color: color("supportLight5");
 }
 h1 {
     @include font-size(fontSize("h1"));

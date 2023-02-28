@@ -27,23 +27,25 @@ $grid: (
 );
 $fontSizes: (
     h1: 7.8rem,
-    body: 1.8rem,
+    body: 1.6rem,
 );
 $accentColors: (
-    primary: #00b2ff,
-    secondary: #ffdd35,
+    primary: #473dff,
+    secondary: #ed3548,
     success: #01cc88,
     warning: #ffc107,
     danger: #dc3545,
 );
 $variationsColors: (
-    primaryLight: lighten(map-get($accentColors, "primary"), 22%),
-    primaryDark: darken(map-get($accentColors, "primary"), 12%),
+    primaryLight2:#bfe2fd
+    primaryLight1:#adbeff
+    primaryDark: #02295a,
     supportLight1: #fff,
-    supportLight2: #e9f0f4,
+    supportLight2: #fafbff,
+    supportLight3: #f0f6ff,
+    supportLight4: #d6d9e6,
+    supportLight5: #9699ab,
     supportDark1: #000,
-    supportDark2: #171717,
-    supportDark3: #171823,
 );
 
 // general
