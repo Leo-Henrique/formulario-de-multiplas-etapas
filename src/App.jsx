@@ -3,6 +3,7 @@ import "./scss/style.scss";
 import PersonalInfo from "./components/PersonalInfo";
 import SelectPlan from "./components/SelectPlan";
 import AddOns from "./components/AddOns";
+import { UserPlan } from "./UserContext";
 
 export default function App({ container }) {
     const steps = [
@@ -26,7 +27,7 @@ export default function App({ container }) {
             desc: "Verifique novamente se tudo está OK antes de confirmar.",
         },
     ];
-    const [step, setStep] = React.useState(1);
+    const [step, setStep] = React.useState(2);
 
     return (
         <div className="container">
@@ -52,7 +53,9 @@ export default function App({ container }) {
 
                 <p>{steps[step].desc}</p>
 
-                <fieldset>{steps[step].component}</fieldset>
+                <UserPlan>
+                    <fieldset>{steps[step].component}</fieldset>
+                </UserPlan>
             </form>
         </div>
     );

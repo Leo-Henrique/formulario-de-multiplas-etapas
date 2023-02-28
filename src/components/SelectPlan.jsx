@@ -2,6 +2,7 @@ import React from "react";
 import SVGArcade from "../assets/icon-arcade.svg";
 import SVGAdvanced from "../assets/icon-advanced.svg";
 import SVGPro from "../assets/icon-pro.svg";
+import { UserContext } from "../UserContext";
 
 export default function SelectPlan() {
     const plans = [
@@ -33,7 +34,7 @@ export default function SelectPlan() {
             },
         },
     ];
-    const [period, setPeriod] = React.useState("month");
+    const { period } = React.useContext(UserContext);
 
     return (
         <>
