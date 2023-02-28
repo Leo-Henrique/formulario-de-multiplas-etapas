@@ -1,6 +1,8 @@
 import React from "react";
 import "./scss/style.scss";
 import PersonalInfo from "./components/PersonalInfo";
+import SelectPlan from "./components/SelectPlan";
+import AddOns from "./components/AddOns";
 
 export default function App({ container }) {
     const steps = [
@@ -12,19 +14,20 @@ export default function App({ container }) {
         {
             title: "Selecione seu plano",
             desc: "Você tem a opção de cobrança mensal ou anual.",
+            component: <SelectPlan />
         },
         {
             title: "Complementos",
             desc: "Os complementos ajudam a aprimorar sua experiência de jogo.",
+            component: <AddOns />,
         },
         {
             title: "Resumo",
             desc: "Verifique novamente se tudo está OK antes de confirmar.",
         },
     ];
-    const [step, setStep] = React.useState(0);
+    const [step, setStep] = React.useState(1);
 
-    console.log(container);
     return (
         <div className="container">
             <ul>
@@ -49,7 +52,7 @@ export default function App({ container }) {
 
                 <p>{steps[step].desc}</p>
 
-                <div>{steps[step].component}</div>
+                <fieldset>{steps[step].component}</fieldset>
             </form>
         </div>
     );
