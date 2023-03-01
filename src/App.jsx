@@ -29,7 +29,7 @@ export default function App({ container }) {
             component: <Summary />
         },
     ];
-    const [step, setStep] = React.useState(3);
+    const [step, setStep] = React.useState(0);
 
     return (
         <div className="container">
@@ -58,6 +58,12 @@ export default function App({ container }) {
                 <UserPlan>
                     <fieldset>{steps[step].component}</fieldset>
                 </UserPlan>
+
+                {step !== 0 ? <button>Voltar</button> : null}
+                
+                <button type="button">
+                    Next Step
+                </button>
             </form>
         </div>
     );
