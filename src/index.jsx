@@ -2,11 +2,11 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 
-const container = document.getElementById("root");
-const root = createRoot(container);
+const card = document.getElementById("card");
+const root = createRoot(card);
 
 root.render(
     <React.StrictMode>
-        <App container={container} />
+        <App card={card} />
     </React.StrictMode>
 );

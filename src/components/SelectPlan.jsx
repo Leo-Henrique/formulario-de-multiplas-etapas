@@ -39,35 +39,46 @@ export default function SelectPlan() {
 
     return (
         <>
-            <ul>
-                {plans.map(({ id, icon, name, price }) => (
-                    <li key={id}>
-                        <label htmlFor={id}>
-                            <input type="checkbox" id={id} name={id} />
+            <ul className="plan__list">
+                {plans.map(({ id, icon, name, price }, index) => (
+                    <li className="plan__item" key={id}>
+                        <input
+                            className="plan__input"
+                            type="checkbox"
+                            id={id}
+                            name={id}
+                            checked={index == 0 && true}
+                        />
 
-                            <span>{icon}</span>
-                            <span>{name}</span>
+                        <label className="plan__label" htmlFor={id}>
+                            <span className="plan__icon">{icon}</span>
+                            <span className="plan__name">{name}</span>
 
-                            <PricePerPeriod
+                            <PricePerPeriod classes="plan__price"
                                 period={period}
                                 price={price}
                             />
 
                             {period == "year" && (
-                                <span>2 meses grátis</span>
+                                <span className="plan__month">2
+                                    meses grátis
+                                </span>
                             )}
                         </label>
                     </li>
                 ))}
             </ul>
 
-            <div>
-                <span>Mensal</span>
-                <label htmlFor="period">
+            <div className="plan__toggle">
+                <span className="--active">Mensal</span>
+
+                <label className="plan__toggle__btn"
+                htmlFor="period">
                     <input type="checkbox" id="period" name="period" />
 
                     <span></span>
                 </label>
+
                 <span>Anual</span>
             </div>
         </>

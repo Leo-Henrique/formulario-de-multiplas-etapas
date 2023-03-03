@@ -26,8 +26,10 @@ $grid: (
     gutter: 30px,
 );
 $fontSizes: (
-    h1: 7.8rem,
+    h1: 3.2rem,
     body: 1.6rem,
+    bodySm: 1.4rem,
+    small: 1.3rem,
 );
 $accentColors: (
     primary: #473dff,
@@ -37,9 +39,11 @@ $accentColors: (
     danger: #dc3545,
 );
 $variationsColors: (
+    primaryLight3:#EBF4FE,
     primaryLight2:#bfe2fd,
     primaryLight1:#adbeff,
-    primaryDark: #02295a,
+    primaryDark2: #16437D,
+    primaryDark1: #02295a,
     supportLight1: #fff,
     supportLight2: #fafbff,
     supportLight3: #f0f6ff,
@@ -59,3 +63,4 @@ $transitions: (
         timing-function: ease-in-out,
     ),
 );
+$borderRadius: 10px;

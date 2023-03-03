@@ -23,10 +23,19 @@ export default function PersonalInfo() {
     return (
         <>
             {fields.map(({ id, label, placeholder }) => (
-                <div key={id}>
-                    <label htmlFor={id}>{label}</label>
+                <div key={id}
+                className="infos__item">
+                    <div className="infos__info">
+                        <label htmlFor={id}
+                        className="infos__label">
+                            {label}
+                        </label>
 
-                    <input type="text"
+                        {/* <span class="infos__error">Um erro ocorreu!</span> */}
+                    </div>
+
+                    <input className="infos__input"
+                    type="text"
                     id={id}
                     name={id}
                     placeholder={placeholder} />

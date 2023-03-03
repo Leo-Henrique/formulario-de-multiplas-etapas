@@ -6,42 +6,52 @@ import AddOns from "./components/AddOns";
 import { UserPlan } from "./UserContext";
 import Summary from "./components/Summary";
 
-export default function App({ container }) {
+export default function App({ card }) {
+    const classes = ["card", "container"];
+    React.useEffect(() => classes.forEach(name => card.classList.add(name)), []);
+
     const steps = [
         {
             title: "Suas informações",
             desc: "Por favor, forneça seu nome, endereço de e-mail e número de telefone.",
+            class: "infos",
             component: <PersonalInfo />,
         },
         {
             title: "Selecione seu plano",
             desc: "Você tem a opção de cobrança mensal ou anual.",
-            component: <SelectPlan />
+            class: "plan",
+            component: <SelectPlan />,
         },
         {
             title: "Complementos",
             desc: "Os complementos ajudam a aprimorar sua experiência de jogo.",
+            class: "complements",
             component: <AddOns />,
         },
         {
             title: "Resumo",
             desc: "Verifique novamente se tudo está OK antes de confirmar.",
-            component: <Summary />
+            class: "summary",
+            component: <Summary />,
         },
     ];
-    const [step, setStep] = React.useState(0);
+    const [step, setStep] = React.useState(1);
+
 
     return (
-        <div className="container">
-            <ul>
+        <>
+            <ul className="card__steps">
                 {steps.map(({ title }, index) => {
                     const id = ++index;
 
                     return (
-                        <li key={title}>
-                            <span>{id}</span>
+                        <li className="card__step" key={title}>
+                            <span className="card__step__number">
+                                {id}
+                            </span>
 
-                            <div>
+                            <div className="card__step__infos">
                                 <small>Passo {id}</small>
                                 <strong>{title}</strong>
                             </div>
@@ -50,21 +60,36 @@ export default function App({ container }) {
                 })}
             </ul>
 
-            <form>
-                <h1>{steps[step].title}</h1>
+            <form className="card__form">
+                <div className="card__content">
+                    <h1 className="card__title">
+                        {steps[step].title}
+                    </h1>
 
-                <p>{steps[step].desc}</p>
+                    <p className="card__desc">
+                        {steps[step].desc}
+                    </p>
 
-                <UserPlan>
-                    <fieldset>{steps[step].component}</fieldset>
-                </UserPlan>
+                    <UserPlan>
+                        <fieldset className={steps[step].class}>
+                            {steps[step].component}
+                        </fieldset>
+                    </UserPlan>
+                </div>
 
-                {step !== 0 ? <button>Voltar</button> : null}
-                
-                <button type="button">
-                    Next Step
-                </button>
+                <div className="card__btns">
+                    {step !== 0 ? (
+                        <button className="card__prev">
+                            Voltar
+                        </button>
+                    ) : null}
+
+                    <button className="card__next"
+                    type="button">
+                        Próximo
+                    </button>
+                </div>
             </form>
-        </div>
+        </>
     );
 }
