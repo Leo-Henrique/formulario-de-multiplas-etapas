@@ -1,6 +1,7 @@
 import React from "react";
 import { UserContext } from "../UserContext";
 import PricePerPeriod from "./Helpers/PricePerPeriod";
+import SVGCheckmark from "../assets/icon-checkmark.svg";
 
 
 export default function AddOns() {
@@ -37,25 +38,31 @@ export default function AddOns() {
 
     return (
         <>
-            <ul>
+            <ul className="addons__list">
                 {options.map(({ id, title, desc, price }) => (
-                    <li key={id}>
-                        <label htmlFor={id}>
-                            <input type="checkbox"
-                            id={id}
-                            name={id} />
+                    <li className="addons__item"
+                    key={id}>
+                        <input className="addons__input"
+                        type="checkbox"
+                        id={id}
+                        name={id} />
 
-                            <span></span>
+                        <label className="addons__label"
+                        htmlFor={id}>
+                            <span className="addons__checkbox">
+                                <SVGCheckmark />
+                            </span>
 
-                            <span>
-                                <span>{title}</span>
-                                <span>{desc}</span>
+                            <span className="addons__infos">
+                                <span className="addons__title">{title}</span>
+                                <span className="addons__desc">{desc}</span>
                             </span>
 
                             <PricePerPeriod
                                 period={period}
                                 price={price}
                                 before="+"
+                                classes="addons__price"
                             />
                         </label>
                     </li>

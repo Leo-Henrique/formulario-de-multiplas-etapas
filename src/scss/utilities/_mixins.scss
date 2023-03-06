@@ -115,8 +115,28 @@
     }
 }
 @mixin hideInput {
+    display: block;
     width: 0px;
     height: 0px;
     overflow: hidden;
     visibility: hidden;
+}
+@mixin label {
+    display: block;
+        padding: 2rem;
+        border-radius: $borderRadius;
+        cursor: pointer;
+
+        @include state((
+            default: (
+                border: 1px solid color("supportLight4"),
+                background-color: transparent,
+            ),
+            hover: (border-color: color("primary")),
+            active: (background-color: color("primaryLight3"))
+        ));
+}
+@mixin labelActive {
+    background-color: color("supportLight3");
+    border-color: color("primary");
 }

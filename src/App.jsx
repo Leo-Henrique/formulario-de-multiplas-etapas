@@ -26,7 +26,7 @@ export default function App({ card }) {
         {
             title: "Complementos",
             desc: "Os complementos ajudam a aprimorar sua experiência de jogo.",
-            class: "complements",
+            class: "addons",
             component: <AddOns />,
         },
         {
@@ -36,7 +36,7 @@ export default function App({ card }) {
             component: <Summary />,
         },
     ];
-    const [step, setStep] = React.useState(1);
+    const [step, setStep] = React.useState(2);
 
 
     return (

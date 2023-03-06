@@ -11,23 +11,10 @@
         @include hideInput;
     }
     &__input[checked] + &__label {
-        background-color: color("supportLight3");
-        border-color: color("primaryDark1");
+        @include labelActive;
     }
     &__label {
-        display: block;
-        padding: 2rem;
-        border-radius: $borderRadius;
-        cursor: pointer;
-
-        @include state((
-            default: (
-                border: 1px solid color("supportLight4"),
-                background-color: transparent,
-            ),
-            hover: (border-color: color("primaryDark1")),
-            active: (background-color: color("supportLight3"))
-        ));
+        @include label;
     }
     &__icon,
     &__name,
