@@ -36,7 +36,7 @@ export default function App({ card }) {
             component: <Summary />,
         },
     ];
-    const [step, setStep] = React.useState(2);
+    const [step, setStep] = React.useState(3);
 
 
     return (

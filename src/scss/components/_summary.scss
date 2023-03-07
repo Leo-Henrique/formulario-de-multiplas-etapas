@@ -1,0 +1,70 @@
+.summary {
+    $padding: 2rem;
+    @mixin flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        column-gap: 4rem;
+    }
+
+    &__infos {
+        background-color: color("supportLight3");
+        padding: 2rem;
+        border-radius: $borderRadius;
+    }
+    &__plan {
+        @include flex;
+        border-bottom: 1px solid color("supportLight4");
+        padding-bottom: 2rem;
+
+        &__title p {
+            font-weight: 600;
+            color: color("primaryDark1");
+        }
+        &__title button {
+            font-size: fontSize("bodyMd");
+            text-decoration: underline;
+            cursor: pointer;
+            @include state((
+                default: color("supportLight5"),
+                hover: color("primary"),
+                active: color("primaryDark1")
+            ), color)
+        }
+        &__price {
+            color: color("primaryDark1");
+            font-weight: 600;
+            white-space: nowrap;
+        }
+    }
+    &__addons {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1.5rem;
+        padding-top: 2rem;
+
+        &__item {
+            @include flex;
+            font-size: fontSize("bodyMd");
+            white-space: nowrap;
+        }
+        &__price {
+            color: color("primaryDark1");
+            font-weight: 400;
+        }
+    }
+    &__total {
+        @include flex;
+        padding: 2rem;
+        white-space: nowrap;
+
+        &__text {
+            font-size: fontSize("bodyMd");
+        }
+        &__price {
+            font-size: fontSize("bodyLg");
+            font-weight: 600;
+            color: color("primary");
+        }
+    }
+}

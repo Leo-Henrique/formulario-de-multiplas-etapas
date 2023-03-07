@@ -3,7 +3,7 @@ import React from "react";
 export const UserContext = React.createContext();
 
 export function UserPlan({ children }) {
-    const [plan, setPlan] = React.useState({ title: "arcade" });
+    const [plan, setPlan] = React.useState({ title: "Arcade" });
     const [period, setPeriod] = React.useState("month");
     const [addOns, setAddOns] = React.useState([
         {
