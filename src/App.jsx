@@ -1,10 +1,11 @@
 import React from "react";
 import "./scss/style.scss";
+import { UserPlan } from "./UserContext";
 import PersonalInfo from "./components/PersonalInfo";
 import SelectPlan from "./components/SelectPlan";
 import AddOns from "./components/AddOns";
-import { UserPlan } from "./UserContext";
 import Summary from "./components/Summary";
+import Finished from "./components/Finished";
 
 export default function App({ card }) {
     const classes = ["card", "container"];
@@ -36,7 +37,7 @@ export default function App({ card }) {
             component: <Summary />,
         },
     ];
-    const [step, setStep] = React.useState(3);
+    const [step, setStep] = React.useState(null);
 
 
     return (
@@ -60,36 +61,39 @@ export default function App({ card }) {
                 })}
             </ul>
 
-            <form className="card__form">
-                <div className="card__content">
-                    <h1 className="card__title">
-                        {steps[step].title}
-                    </h1>
+            {step !== null ? (
+                <form className="card__form">
+                    <div className="card__content">
+                        <h1 className="card__title">
+                            {steps[step].title}
+                        </h1>
 
-                    <p className="card__desc">
-                        {steps[step].desc}
-                    </p>
+                        <p className="card__desc">
+                            {steps[step].desc}
+                        </p>
 
-                    <UserPlan>
-                        <fieldset className={steps[step].class}>
-                            {steps[step].component}
-                        </fieldset>
-                    </UserPlan>
-                </div>
+                        <UserPlan>
+                            <fieldset className={steps[step].class}>
+                                {steps[step].component}
+                            </fieldset>
+                        </UserPlan>
+                    </div>
 
-                <div className="card__btns">
-                    {step !== 0 ? (
-                        <button className="card__prev">
-                            Voltar
+                    <div className="card__btns">
+                        {step !== 0 ? (
+                            <button className="card__prev">
+                                Voltar
+                            </button>
+                        ) : null}
+
+                        <button className="card__next"
+                        type="button">
+                            Próximo
                         </button>
-                    ) : null}
-
-                    <button className="card__next"
-                    type="button">
-                        Próximo
-                    </button>
-                </div>
-            </form>
+                    </div>
+                </form>
+            ) : <Finished />}
+            
         </>
     );
 }
