@@ -1,21 +1,36 @@
 .summary {
     $padding: 2rem;
+    $paddingSm: 1.5rem;
     @mixin flex {
         display: flex;
         align-items: center;
         justify-content: space-between;
         column-gap: 4rem;
+
+        @include breakpoint("sm") {
+            column-gap: 2rem;
+            row-gap: 0.4rem;
+            flex-wrap: wrap;
+        }
     }
 
     &__infos {
         background-color: color("supportLight3");
-        padding: 2rem;
+        padding: $padding;
         border-radius: $borderRadius;
+
+        @include breakpoint("sm") {
+            padding: $paddingSm;
+        }
     }
     &__plan {
         @include flex;
         border-bottom: 1px solid color("supportLight4");
-        padding-bottom: 2rem;
+        padding-bottom: $padding;
+
+        @include breakpoint("sm") {
+            padding-bottom: $paddingSm;
+        }
 
         &__title p {
             font-weight: 600;
@@ -29,24 +44,40 @@
                 default: color("supportLight5"),
                 hover: color("primary"),
                 active: color("primaryDark1")
-            ), color)
+            ), color);
+
+            @include breakpoint("sm") {
+                font-size: fontSize("bodySm");
+            }            
         }
         &__price {
             color: color("primaryDark1");
             font-weight: 600;
             white-space: nowrap;
+
+            @include breakpoint("sm") {
+                font-size: fontSize("bodySm");
+            }
         }
     }
     &__addons {
         display: flex;
         flex-direction: column;
         row-gap: 1.5rem;
-        padding-top: 2rem;
+        padding-top: $padding;
+
+        @include breakpoint("sm") {
+            padding-top: $paddingSm;
+        }
 
         &__item {
             @include flex;
             font-size: fontSize("bodyMd");
             white-space: nowrap;
+            
+            @include breakpoint("sm") {
+                font-size: fontSize("bodySm");
+            }
         }
         &__price {
             color: color("primaryDark1");
@@ -55,16 +86,27 @@
     }
     &__total {
         @include flex;
-        padding: 2rem;
+        padding: $padding;
         white-space: nowrap;
+
+        @include breakpoint("sm") {
+            padding: $paddingSm;
+        }
 
         &__text {
             font-size: fontSize("bodyMd");
+            @include breakpoint("sm") {
+                font-size: fontSize("bodySm");
+            }
         }
         &__price {
             font-size: fontSize("bodyLg");
             font-weight: 600;
             color: color("primary");
+
+            @include breakpoint("sm") {
+                font-size: fontSize("bodyMd");
+            }
         }
     }
 }

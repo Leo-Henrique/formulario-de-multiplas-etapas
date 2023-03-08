@@ -95,23 +95,25 @@
     margin-right: auto;
 }
 @mixin scrollbar {
-    /* Firefox */
-    scrollbar-width: none;
-    scrollbar-color: color("supportLight4") transparent;
+    @media (min-width: 992px) {
+        /* Firefox */
+        scrollbar-width: none;
+        scrollbar-color: color("supportLight4") transparent;
 
-    /* Chrome, Edge, and Safari */
-    &::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
+        /* Chrome, Edge, and Safari */
+        &::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        &::-webkit-scrollbar-track {
+            background-color: transparent;
 
-    }
-    &::-webkit-scrollbar-track {
-        background: transparent;
-    }
-    &::-webkit-scrollbar-thumb {
-        background-color: color("supportLight4");
-        border-radius: 15px;
-        border: 0px solid transparent;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: color("supportLight4");
+            border-radius: 15px;
+            border: 0px solid transparent;
+        }
     }
 }
 @mixin hideInput {
@@ -121,20 +123,32 @@
     overflow: hidden;
     visibility: hidden;
 }
+@mixin card {
+    position: relative;
+    background-color: color("supportLight1");
+    margin: 0 1.5rem;
+    margin-top: -$formDisplacement;
+    border-radius: $borderRadius;
+    box-shadow: $cardShadow;
+}
 @mixin label {
     display: block;
-        padding: 2rem;
-        border-radius: $borderRadius;
-        cursor: pointer;
+    padding: 2rem;
+    border-radius: $borderRadius;
+    cursor: pointer;
 
-        @include state((
-            default: (
-                border: 1px solid color("supportLight4"),
-                background-color: transparent,
-            ),
-            hover: (border-color: color("primary")),
-            active: (background-color: color("primaryLight3"))
-        ));
+    @include state((
+        default: (
+            border: 1px solid color("supportLight4"),
+            background-color: transparent,
+        ),
+        hover: (border-color: color("primary")),
+        active: (background-color: color("primaryLight3"))
+    ));
+
+    @include breakpoint("sm") {
+        padding: 1.5rem;
+    }
 }
 @mixin labelActive {
     background-color: color("supportLight3");

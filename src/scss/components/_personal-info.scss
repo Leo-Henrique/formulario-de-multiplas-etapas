@@ -3,6 +3,7 @@
     flex-direction: column;
     row-gap: 2rem;
 
+
     &__info {
         font-size: fontSize("bodySm");
         line-height: 1.4;
@@ -16,6 +17,9 @@
         color: color("primaryDark1");
         font-weight: 400;
         white-space: nowrap;
+        @include breakpoint("sm") {
+            font-size: fontSize("small");
+        }
     }
     &__error {
         font-weight: 600;
@@ -29,25 +33,34 @@
         border-radius: $borderRadius;
         font-weight: 400;
 
-        @include state(
-            (
-                default: (
-                    color: color("primaryDark1"),
-                    border: 1px solid color("supportLight4"),
-                ),
-                hover: (
-                    color: color("primaryDark1"),
-                    border-color: color("primaryDark1"),
-                ),
-                focus: (
-                    color: color("primaryDark1"),
-                    border-color: color("primaryDark1"),
-                ),
-            )
-        );
+        @include state((
+            default: (
+                color: color("primaryDark1"),
+                border: 1px solid color("supportLight4"),
+            ),
+            hover: (
+                color: color("primaryDark1"),
+                border-color: color("primaryDark1"),
+            ),
+            focus: (
+                color: color("primaryDark1"),
+                border-color: color("primaryDark1"),
+            ),
+        ));
+
+        @include breakpoint("sm") {
+            border-radius: calc($borderRadius / 2);
+        }
 
         &::placeholder {
             color: color("supportLight5");
+
+            @include breakpoint("sm") {
+                font-size: fontSize("bodyMd");
+            }
+        }
+        &:placeholder-shown {
+            text-overflow: ellipsis;
         }
         &.--error {
             border-color: color("secondary");

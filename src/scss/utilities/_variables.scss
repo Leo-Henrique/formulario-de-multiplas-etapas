@@ -13,7 +13,7 @@ $mediaQuery: (
 
 // rfs config
 $rfs-rem-value: 10;
-$rfs-factor: 5;
+$rfs-factor: 4;
 $rfs-breakpoint: map-get(map-get($mediaQuery, "sizes"), "xl");
 
 // UI
@@ -66,3 +66,5 @@ $transitions: (
     ),
 );
 $borderRadius: 10px;
+$formDisplacement: 7rem;
+$cardShadow: 0 8px 8px rgba(0, 0, 0, 0.08);

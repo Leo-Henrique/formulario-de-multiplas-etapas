@@ -3,9 +3,17 @@
         display: flex;
         column-gap: 2rem;
         margin-bottom: 2rem;
+        @include breakpoint("md") {
+            flex-direction: column;
+            row-gap: 1rem;
+        }
     }
     &__item {
         flex: 1 0 140px;
+        @include breakpoint("md") {
+            width: 100%;
+            flex: initial;
+        }
     }
     &__input {
         @include hideInput;
@@ -15,6 +23,14 @@
     }
     &__label {
         @include label;
+        @include breakpoint("md") {
+            width: 100%;
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            justify-content: start;
+            align-items: center;
+            column-gap: 1.5rem;
+        }
     }
     &__icon,
     &__name,
@@ -24,13 +40,23 @@
     }
     &__icon {
         margin-bottom: 4rem;
+
+        @include breakpoint("md") {
+            margin-bottom: 0;
+            grid-row: 1 / 3;
+        }
     }
     &__name {
         font-weight: 500;
         color: color("primaryDark1");
+
     }
     &__price {
         font-size: fontSize("bodySm");
+
+        @include breakpoint("md") {
+            grid-column: 2;
+        }
     }
     &__month {
         color: color("primaryDark1");
@@ -47,6 +73,11 @@
         background-color: color("supportLight3");
         border-radius: $borderRadius;
         font-weight: 400;
+
+        @include breakpoint("sm") {
+            column-gap: 1.5rem;
+            padding: 1.5rem 2.5rem;
+        }
 
         > span.--active {
             color: color("primaryDark1");

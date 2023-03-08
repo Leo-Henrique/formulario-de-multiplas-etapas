@@ -1,3 +1,4 @@
+
 body {
     display: flex;
     align-items: center;
@@ -6,6 +7,9 @@ body {
     height: 100vh;
     background-color: color("primaryLight3");
     padding: 3rem;
+    @include breakpoint("lg")  {
+        padding: 0;
+    }
 }    
 .card {
     flex: 1;
@@ -15,9 +19,21 @@ body {
     max-height: 600px;
     background-color: color("supportLight1");
     border-radius: $borderRadius;
-    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.08);
+    box-shadow: $cardShadow;
     overflow-y: auto;
     @include scrollbar;
+
+    @include breakpoint("lg") {
+        max-width: initial;
+        display: flex;
+        flex-direction: column;
+        background-color: transparent;
+        border-radius: 0;
+        box-shadow: initial;
+        position: absolute;
+        inset: 0 0 auto;
+        padding-bottom: 5rem;
+    }
 
     &__steps {
         display: flex;
@@ -27,6 +43,17 @@ body {
         margin: 1.5rem 0 1.5rem 1.5rem;
         background: url("../assets/bg-sidebar-desktop.svg") center / cover no-repeat;
         border-radius: $borderRadius;
+
+        @include breakpoint("lg") {
+            flex-direction: row;
+            padding: 3rem 1.5rem;
+            padding-bottom: calc(3rem + $formDisplacement);
+            margin: 0;
+            background-image: url("../assets/bg-sidebar-mobile.svg");
+            border-radius: 0;
+            justify-content: center;
+            column-gap: 2rem;
+        }
     }
     &__step {
         display: flex;
@@ -55,6 +82,9 @@ body {
         &__infos {
             text-transform: uppercase;
 
+            @include breakpoint("lg") {
+                display: none;
+            }
             small {
                 display: block;
                 font-weight: 300;
@@ -75,19 +105,27 @@ body {
         row-gap: 5rem;
         @include padding-left(10rem);
         @include padding-right(10rem);
+
+        @include breakpoint("lg") {
+            @include card;
+        }
+        @include breakpoint("sm") {
+            padding: 0 2rem;
+        }
     }
     &__content {
         flex: 1;
-        padding-top: 5rem;
-    }
-    &__btns {
-        padding-bottom: 3rem;
+        @include padding-top(6rem);
+
+        @include breakpoint("lg") {
+            @include padding-bottom(6rem);
+        }
     }
     &__title {
         margin-bottom: 1.2rem;
     }
     &__desc {
-        margin-bottom: 4rem;
+        @include margin-bottom(4rem);
     }
     &__btns {
         display: flex;
@@ -95,6 +133,15 @@ body {
         column-gap: 4rem;
         font-weight: 500;
         text-align: center;
+        padding-bottom: 3rem;
+
+        @include breakpoint("lg") {
+            padding: 1.5rem;
+            box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.06);
+            background-color: color("supportLight1");
+            position: fixed;
+            inset: auto 0 0;
+        }
     }
     &__prev,
     &__next {

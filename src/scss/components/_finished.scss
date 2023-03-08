@@ -5,9 +5,22 @@
     justify-content: center;
     text-align: center;
 
+    @include breakpoint("lg") {
+        @include card;
+        padding: 8rem 2rem;
+    }
+
     &__icon {
         @include center;
         margin-bottom: 3rem;
+
+        @include breakpoint("sm") {
+            margin-bottom: 2rem;
+            svg {
+                width: 65px;
+                height: auto;
+            }
+        }
     }
     &__title {
         margin-bottom: 1.2rem;
@@ -15,4 +28,4 @@
     &__desc {
         max-width: 450px;
     }
-}
+} 
