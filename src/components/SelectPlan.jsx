@@ -2,40 +2,41 @@ import React from "react";
 import SVGArcade from "../assets/icon-arcade.svg";
 import SVGAdvanced from "../assets/icon-advanced.svg";
 import SVGPro from "../assets/icon-pro.svg";
-import { UserContext } from "../UserContext";
 import PricePerPeriod from "./Helpers/PricePerPeriod";
+import { PlanContext } from "../PlanContext";
 
-export default function SelectPlan() {
-    const plans = [
-        {
-            id: "arcade",
-            icon: <SVGArcade />,
-            name: "Arcade",
-            price: {
-                month: 50,
-                year: 500,
-            },
+export const plans = [
+    {
+        id: "arcade",
+        icon: <SVGArcade />,
+        title: "Arcade",
+        price: {
+            month: 50,
+            year: 500,
         },
-        {
-            id: "advanced",
-            icon: <SVGAdvanced />,
-            name: "Avançado",
-            price: {
-                month: 60,
-                year: 600,
-            },
+    },
+    {
+        id: "advanced",
+        icon: <SVGAdvanced />,
+        title: "Avançado",
+        price: {
+            month: 60,
+            year: 600,
         },
-        {
-            id: "pro",
-            icon: <SVGPro />,
-            name: "Pro",
-            price: {
-                month: 80,
-                year: 800,
-            },
+    },
+    {
+        id: "pro",
+        icon: <SVGPro />,
+        title: "Pro",
+        price: {
+            month: 80,
+            year: 800,
         },
-    ];
-    const { period } = React.useContext(UserContext);
+    },
+];
+
+export function SelectPlan() {
+    const { period } = React.useContext(PlanContext);
 
     return (
         <>
@@ -54,14 +55,15 @@ export default function SelectPlan() {
                             <span className="plan__icon">{icon}</span>
                             <span className="plan__name">{name}</span>
 
-                            <PricePerPeriod classes="plan__price"
+                            <PricePerPeriod
+                                classes="plan__price"
                                 period={period}
                                 price={price}
                             />
 
                             {period == "year" && (
-                                <span className="plan__month">2
-                                    meses grátis
+                                <span className="plan__month">
+                                    2 meses grátis
                                 </span>
                             )}
                         </label>

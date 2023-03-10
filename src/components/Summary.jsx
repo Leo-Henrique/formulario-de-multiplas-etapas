@@ -1,9 +1,9 @@
 import React from "react";
-import { UserContext } from "../UserContext";
 import PricePerPeriod from "./Helpers/PricePerPeriod";
+import { PlanContext } from "../PlanContext";
 
 export default function Summary(props) {
-    const { plan, period, addOns } = React.useContext(UserContext);
+    const { plan, addOns, period } = React.useContext(PlanContext);
     const periodPlan = () => period == "month" ? "Mensal" : "Anual";
     const periodTotal = () => period == "month" ? "por mês" : "por ano";
 
@@ -27,8 +27,7 @@ export default function Summary(props) {
 
                 <ul className="summary__addons">
                     {addOns.map(({ title, price }) => (
-                        <li className="summary__addons__item"
-                        key={title}>
+                        <li className="summary__addons__item" key={title}>
                             <span className="summary__addons__title">
                                 {title}
                             </span>

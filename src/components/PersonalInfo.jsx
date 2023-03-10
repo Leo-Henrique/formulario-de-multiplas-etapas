@@ -1,4 +1,5 @@
 import React from "react";
+import { PlanContext } from "../PlanContext";
 
 export default function PersonalInfo() {
     const ex = "p. ex.";
@@ -18,7 +19,7 @@ export default function PersonalInfo() {
             label: "Número de telefone",
             placeholder: `${ex} (14) 90000-0000`
         }
-    ]
+    ];
 
     return (
         <>

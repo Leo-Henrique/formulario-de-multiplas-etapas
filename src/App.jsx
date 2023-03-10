@@ -1,16 +1,13 @@
 import React from "react";
 import "./scss/style.scss";
-import { UserPlan } from "./UserContext";
 import PersonalInfo from "./components/PersonalInfo";
-import SelectPlan from "./components/SelectPlan";
-import AddOns from "./components/AddOns";
+import { SelectPlan } from "./components/SelectPlan";
+import { AddOns } from "./components/AddOns";
 import Summary from "./components/Summary";
 import Finished from "./components/Finished";
+import { PlanContext, planInfos } from "./PlanContext";
 
 export default function App({ card }) {
-    const classes = ["card", "container"];
-    React.useEffect(() => classes.forEach(name => card.classList.add(name)), []);
-
     const steps = [
         {
             title: "Suas informações",
@@ -23,6 +20,7 @@ export default function App({ card }) {
             desc: "Você tem a opção de cobrança mensal ou anual.",
             class: "plan",
             component: <SelectPlan />,
+            state: {}
         },
         {
             title: "Complementos",
@@ -38,7 +36,10 @@ export default function App({ card }) {
         },
     ];
     const [step, setStep] = React.useState(0);
+    const previousStep = () => setStep(step - 1);
+    const next = React.useRef();
 
+    React.useEffect(() => ["card", "container"].forEach(name => card.classList.add(name)), []);
 
     return (
         <>
@@ -73,22 +74,29 @@ export default function App({ card }) {
                             {steps[step].desc}
                         </p>
 
-                        <UserPlan>
+                        <PlanContext.Provider value={{
+                            ...planInfos(),
+                            step,
+                            setStep,
+                            btnNext: next.current
+                        }}>
                             <fieldset className={steps[step].class}>
                                 {steps[step].component}
                             </fieldset>
-                        </UserPlan>
+                        </PlanContext.Provider>
                     </div>
 
                     <div className="card__btns">
                         {step !== 0 ? (
-                            <button className="card__prev">
+                            <button className="card__prev"
+                            onClick={previousStep}>
                                 Voltar
                             </button>
                         ) : null}
 
                         <button className="card__next"
-                        type="button">
+                        type="button"
+                        ref={next}>
                             Próximo
                         </button>
                     </div>
