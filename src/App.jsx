@@ -36,7 +36,6 @@ export default function App({ card }) {
     ];
     const [step, setStep] = React.useState(0);
     const previousStep = () => setStep(step - 1);
-    const next = React.useRef();
 
     React.useEffect(() => ["card", "container"].forEach(name => card.classList.add(name)), []);
 
@@ -77,7 +76,6 @@ export default function App({ card }) {
                             ...planInfos(),
                             step,
                             setStep,
-                            btnNext: next.current
                         }}>
                             <fieldset className={steps[step].class}>
                                 {steps[step].component}
@@ -88,14 +86,14 @@ export default function App({ card }) {
                     <div className="card__btns">
                         {step !== 0 ? (
                             <button className="card__prev"
+                            type="button"
                             onClick={previousStep}>
                                 Voltar
                             </button>
                         ) : null}
 
                         <button className="card__next"
-                        type="button"
-                        ref={next}>
+                        type="button">
                             Próximo
                         </button>
                     </div>

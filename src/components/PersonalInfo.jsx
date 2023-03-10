@@ -1,4 +1,5 @@
 import React from "react";
+import useNextStep from "../hooks/useNextStep";
 import { PlanContext } from "../PlanContext";
 
 export default function PersonalInfo() {
@@ -20,6 +21,12 @@ export default function PersonalInfo() {
             placeholder: `${ex} (14) 90000-0000`
         }
     ];
+    const { step, setStep } = React.useContext(PlanContext);
+    const next =  () => {
+        setStep(step + 1);
+    }
+    
+    useNextStep(next);
 
     return (
         <>
