@@ -20,7 +20,6 @@ export default function App({ card }) {
             desc: "Você tem a opção de cobrança mensal ou anual.",
             class: "plan",
             component: <SelectPlan />,
-            state: {}
         },
         {
             title: "Complementos",
