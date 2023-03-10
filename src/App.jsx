@@ -37,18 +37,19 @@ export default function App({ card }) {
             component: <Summary />,
         },
     ];
-    const [step, setStep] = React.useState(null);
+    const [step, setStep] = React.useState(0);
 
 
     return (
         <>
             <ul className="card__steps">
                 {steps.map(({ title }, index) => {
-                    const id = ++index;
+                    const id = index + 1;
+                    const active = () => index === step ? " --active" : "";
 
                     return (
                         <li className="card__step" key={title}>
-                            <span className="card__step__number">
+                            <span className={`card__step__number${active()}`}>
                                 {id}
                             </span>
 
