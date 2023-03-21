@@ -7,8 +7,8 @@ export default function PricePerPeriod({
     classes
 }) {
     const handlePeriod = () => {
-        if (period == "month") return `R$${month}/mês`;
-        else return `R$${year}/ano`;
+        if (period == "month") return `R$ ${month}/mês`;
+        else return `R$ ${year}/ano`;
     };
 
     return (

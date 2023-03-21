@@ -1,6 +1,6 @@
 import React from "react";
 import "./scss/style.scss";
-import PersonalInfo from "./components/PersonalInfo";
+import { PersonalInfo } from "./components/PersonalInfo";
 import { SelectPlan } from "./components/SelectPlan";
 import { AddOns } from "./components/AddOns";
 import Summary from "./components/Summary";
@@ -61,9 +61,13 @@ export default function App({ card }) {
                 })}
             </ul>
 
-            {step !== null ? (
-                <form className="card__form">
-                    <div className="card__content">
+            <PlanContext.Provider value={{
+                ...planInfos(),
+                step,
+                setStep,
+            }}>
+                {step !== null ? (
+                    <form className="card__form">
                         <h1 className="card__title">
                             {steps[step].title}
                         </h1>
@@ -72,34 +76,12 @@ export default function App({ card }) {
                             {steps[step].desc}
                         </p>
 
-                        <PlanContext.Provider value={{
-                            ...planInfos(),
-                            step,
-                            setStep,
-                        }}>
-                            <fieldset className={steps[step].class}>
-                                {steps[step].component}
-                            </fieldset>
-                        </PlanContext.Provider>
-                    </div>
-
-                    <div className="card__btns">
-                        {step !== 0 ? (
-                            <button className="card__prev"
-                            type="button"
-                            onClick={previousStep}>
-                                Voltar
-                            </button>
-                        ) : null}
-
-                        <button className="card__next"
-                        type="button">
-                            Próximo
-                        </button>
-                    </div>
-                </form>
-            ) : <Finished />}
-            
+                        <fieldset className={steps[step].class}>
+                            {steps[step].component}
+                        </fieldset>
+                    </form>
+                ) : <Finished />}
+            </PlanContext.Provider>
         </>
     );
 }

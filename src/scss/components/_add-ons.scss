@@ -33,10 +33,10 @@
             active: (border-color: color("primaryDark1"))
         ))
     }
-    &__input[checked] + &__label {
+    &__input.--checked + &__label {
         @include labelActive;
     }
-    &__input[checked] + &__label &__checkbox {
+    &__input.--checked + &__label &__checkbox {
         background-color: color("primary");
         border-color: color("primary");
         display: flex;

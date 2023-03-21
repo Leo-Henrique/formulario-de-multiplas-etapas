@@ -8,7 +8,7 @@ body {
     background-color: color("primaryLight3");
     padding: 3rem;
     @include breakpoint("lg")  {
-        padding: 0;
+        padding-bottom: 0;
     }
 }    
 .card {
@@ -32,7 +32,6 @@ body {
         box-shadow: initial;
         position: absolute;
         inset: 0 0 auto;
-        padding-bottom: 5rem;
     }
 
     &__steps {
@@ -102,23 +101,23 @@ body {
     &__form {
         display: flex;
         flex-direction: column;
-        row-gap: 5rem;
-        @include padding-left(10rem);
-        @include padding-right(10rem);
-
+        @include padding(6rem 10rem 0);
         @include breakpoint("lg") {
+            display: initial;
             @include card;
         }
         @include breakpoint("sm") {
-            padding: 0 2rem;
+            padding: 3rem 2rem;
         }
-    }
-    &__content {
-        flex: 1;
-        @include padding-top(6rem);
 
-        @include breakpoint("lg") {
-            @include padding-bottom(6rem);
+        fieldset {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+
+            > *:first-child {
+                flex: 1;
+            }
         }
     }
     &__title {
@@ -126,56 +125,5 @@ body {
     }
     &__desc {
         @include margin-bottom(4rem);
-    }
-    &__btns {
-        display: flex;
-        justify-content: space-between;
-        column-gap: 4rem;
-        font-weight: 500;
-        text-align: center;
-        padding-bottom: 3rem;
-
-        @include breakpoint("lg") {
-            padding: 1.5rem;
-            box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.06);
-            background-color: color("supportLight1");
-            position: fixed;
-            inset: auto 0 0;
-        }
-    }
-    &__prev,
-    &__next {
-        padding: 1.2rem 2rem;
-        cursor: pointer;
-    }
-    &__prev {
-        @include state((
-            default: (
-                color: color("supportLight5"),
-            ),
-            hover: (
-                color: color("primaryDark1"),
-            ),
-            active: (
-                color: color("primary"),
-            ),
-        ));
-    }
-    &__next {
-        margin-left: auto;
-        border-radius: $borderRadius;
-
-        @include state((
-            default: (
-                color: color("supportLight1"),
-                background-color: color("primaryDark1"),
-            ),
-            hover: (
-                background-color: color("primaryDark2"),
-            ),
-            active: (
-                background-color: color("primary"),
-            ),
-        ));
     }
 }

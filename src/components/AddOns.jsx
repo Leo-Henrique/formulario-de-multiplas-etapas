@@ -2,6 +2,7 @@ import React from "react";
 import PricePerPeriod from "./Helpers/PricePerPeriod";
 import SVGCheckmark from "../assets/icon-checkmark.svg";
 import { PlanContext } from "../PlanContext";
+import { Buttons } from "./Buttons";
 
 export const complements = [
     {
@@ -34,44 +35,67 @@ export const complements = [
 ];
 
 export function AddOns() {
-    const { period } = React.useContext(PlanContext);
+    const { addOns, setAddOns, step, setStep, period } = React.useContext(PlanContext);
+    const change = ({ target }) => {
+        if (target.checked) {
+            const addOnSelected = complements.filter(complement => complement.id === target.id)[0];
+
+            setAddOns([...addOns, { 
+                addOnId: addOnSelected.id,
+                addOnTitle: addOnSelected.title,
+                addOnPrice: addOnSelected.price
+            }]);
+        } else {
+            setAddOns(addOns.filter(addOn => addOn.addOnId !== target.id));
+        }
+    }
+    const nextStep = () => setStep(step + 1);
 
     return (
         <>
             <ul className="addons__list">
-                {options.map(({ id, title, desc, price }) => (
-                    <li className="addons__item" key={id}>
-                        <input
-                            className="addons__input"
-                            type="checkbox"
-                            id={id}
-                            name={id}
-                        />
+                {complements.map(({ id, title, desc, price }) => {
+                    const selected = addOns.map(addOns => addOns.addOnId);
 
-                        <label className="addons__label" htmlFor={id}>
-                            <span className="addons__checkbox">
-                                <SVGCheckmark />
-                            </span>
-
-                            <span className="addons__infos">
-                                <span className="addons__title">
-                                    {title}
-                                </span>
-                                <span className="addons__desc">
-                                    {desc}
-                                </span>
-                            </span>
-
-                            <PricePerPeriod
-                                period={period}
-                                price={price}
-                                before="+"
-                                classes="addons__price"
+                    return (
+                        <li className="addons__item" key={id}>
+                            <input
+                                className={`addons__input${selected.includes(id) ? " --checked" : ""}`}
+                                type="checkbox"
+                                id={id}
+                                name={id}
+                                value={id}
+                                onChange={change}
+                                checked={selected.includes(id) ? true : false}
                             />
-                        </label>
-                    </li>
-                ))}
+
+                            <label className="addons__label" htmlFor={id}>
+                                <span className="addons__checkbox">
+                                    <SVGCheckmark />
+                                </span>
+
+                                <span className="addons__infos">
+                                    <span className="addons__title">
+                                        {title}
+                                    </span>
+                                    <span className="addons__desc">
+                                        {desc}
+                                    </span>
+                                </span>
+
+                                <PricePerPeriod
+                                    period={period}
+                                    price={price}
+                                    before="+"
+                                    classes="addons__price"
+                                />
+                            </label>
+                        </li>
+                    );
+                })}
             </ul>
+
+            <Buttons step={step} setStep={setStep} nextStep={nextStep} />
         </>
     );
 }

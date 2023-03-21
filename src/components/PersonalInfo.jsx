@@ -1,54 +1,72 @@
 import React from "react";
-import useNextStep from "../hooks/useNextStep";
 import { PlanContext } from "../PlanContext";
+import { Buttons } from "./Buttons";
+import useForm from "../hooks/useForm";
 
-export default function PersonalInfo() {
+export function PersonalInfo() {
     const ex = "p. ex.";
     const fields = [
         {
             id: "name",
             label: "Nome",
-            placeholder: `${ex} Leonardo Henrique`
+            placeholder: `${ex} Leonardo Henrique`,
+            state: useForm("name"),
         },
         {
             id: "email",
             label: "Endereço de e-mail",
-            placeholder: `${ex} leonardo.h@example.com`
+            placeholder: `${ex} leonardo.h@example.com`,
+            state: useForm("email"),
         },
         {
             id: "tel",
             label: "Número de telefone",
-            placeholder: `${ex} (14) 90000-0000`
+            placeholder: `${ex} (14) 90000-0000`,
+            state: useForm("tel"),
         }
     ];
     const { step, setStep } = React.useContext(PlanContext);
-    const next =  () => {
-        setStep(step + 1);
+    const nextStep = () => {
+        const validations = Object.values(fields).map(input => input.state.validate());
+        const validated = validations.every(validation => validation);
+
+        if (validated) setStep(step + 1);
     }
-    
-    useNextStep(next);
 
     return (
         <>
-            {fields.map(({ id, label, placeholder }) => (
-                <div key={id}
-                className="infos__item">
-                    <div className="infos__info">
-                        <label htmlFor={id}
-                        className="infos__label">
-                            {label}
-                        </label>
+            <div className="infos__list">
+                {fields.map(({ id, label, placeholder, state, ref }, index) => (
+                    <div key={id}
+                    className="infos__item">
+                        <div className="infos__info">
+                            <label htmlFor={id}
+                            className="infos__label">
+                                {label}
+                            </label>
 
-                        {/* <span class="infos__error">Um erro ocorreu!</span> */}
+                            {state.error && (
+                                <span className="infos__error">{state.error}</span>
+                            )}
+                        </div>
+
+                        <input className={`infos__input${state.error ? " --error" : ""}`}
+                        type="text"
+                        id={id}
+                        name={id}
+                        placeholder={placeholder}
+                        value={state.value}
+                        onChange={state.change}
+                        autoFocus={index === 0 && true}
+                        ref={ref}
+                        />
                     </div>
+                ))}
+            </div>
 
-                    <input className="infos__input"
-                    type="text"
-                    id={id}
-                    name={id}
-                    placeholder={placeholder} />
-                </div>
-            ))}
+            <Buttons step={step}
+            setStep={setStep}
+            nextStep={nextStep} />
         </>
     );
 }

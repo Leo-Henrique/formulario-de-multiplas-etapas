@@ -18,7 +18,7 @@
     &__input {
         @include hideInput;
     }
-    &__input[checked] + &__label {
+    &__input.--checked + &__label {
         @include labelActive;
     }
     &__label {
@@ -96,9 +96,8 @@
             input {
                 @include hideInput;
             }
-            input[checked] + span {
-                left: initial;
-                right: 4px;
+            input.--checked + span {
+                transform: translate3D(20px, 0, 0);
             }
             span {    
                 position: absolute;
@@ -109,7 +108,7 @@
                 height: calc($height - 8px);
                 border-radius: 50%;
                 background-color: color("supportLight1");
-                @include transition("button", left, right);
+                @include transition("button", transform);
             }
         }
     }

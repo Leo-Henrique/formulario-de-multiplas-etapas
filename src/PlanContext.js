@@ -5,15 +5,17 @@ import { complements } from "./components/AddOns";
 export const PlanContext = React.createContext();
 export const planInfos = () => {
     const { 
+        id: planId,
         title: planTitle, 
-        price: planPrice 
+        price: planPrice,
     } = plans.filter(({id}) => id === "arcade")[0];
     const { 
+        id: addOnId,
         title: addOnTitle, 
-        price: addOnPrice 
+        price: addOnPrice,
     } = complements.filter(({id}) => id === "online")[0];
-    const [plan, setPlan] = React.useState({planTitle, planPrice});
-    const [addOns, setAddOns] = React.useState([{addOnTitle, addOnPrice}]);
+    const [plan, setPlan] = React.useState({planId, planTitle, planPrice});
+    const [addOns, setAddOns] = React.useState([{addOnId, addOnTitle, addOnPrice}]);
     const [period, setPeriod] = React.useState("month");
 
     return {
@@ -22,6 +24,6 @@ export const planInfos = () => {
         addOns,
         setAddOns,
         period,
-        setPeriod
+        setPeriod,
     }
 };

@@ -1,56 +1,80 @@
 import React from "react";
 import PricePerPeriod from "./Helpers/PricePerPeriod";
 import { PlanContext } from "../PlanContext";
+import { Buttons } from "./Buttons";
 
 export default function Summary(props) {
-    const { plan, addOns, period } = React.useContext(PlanContext);
+    const { plan, addOns, period, step, setStep } = React.useContext(PlanContext);
     const periodPlan = () => period == "month" ? "Mensal" : "Anual";
     const periodTotal = () => period == "month" ? "por mês" : "por ano";
+    const total = () => {
+        const planPrice = plan.planPrice[period];
+        const addOnsPrice = addOns.map(addOn => addOn.addOnPrice[period]);
+
+        return addOnsPrice.reduce((acc, item) => acc + item, planPrice);
+    };
+    const changePlan = () => setStep(1);
+    const nextStep = () => setStep(null);
 
     return (
         <>
-            <div className="summary__infos">
-                <div className="summary__plan">
-                    <div className="summary__plan__title">
-                        <p>
-                            {plan.title} ({periodPlan()})
-                        </p>
+            <div>
+                <div className="summary__infos">
+                    <div className="summary__plan">
+                        <div className="summary__plan__title">
+                            <p>
+                                {plan.planTitle} ({periodPlan()})
+                            </p>
 
-                        <button type="button">Alterar</button>
-                    </div>
+                            <button onClick={changePlan}
+                            type="button">Alterar</button>
+                        </div>
 
-                    <span className="summary__plan__price">
-                        R$ 50/mês
-                        {/* plan.price + Helper */}
-                    </span>
-                </div>
-
-                <ul className="summary__addons">
-                    {addOns.map(({ title, price }) => (
-                        <li className="summary__addons__item" key={title}>
-                            <span className="summary__addons__title">
-                                {title}
-                            </span>
+                        <span className="summary__plan__price">
                             <PricePerPeriod
                                 period={period}
-                                price={price}
-                                before="+"
-                                classes="summary__addons__price"
+                                price={plan.planPrice}
                             />
-                        </li>
-                    ))}
-                </ul>
+                        </span>
+                    </div>
+
+                    <ul className="summary__addons">
+                        {addOns.map(({ addOnTitle, addOnPrice }) => (
+                            <li
+                                className="summary__addons__item"
+                                key={addOnTitle}
+                            >
+                                <span className="summary__addons__title">
+                                    {addOnTitle}
+                                </span>
+                                <PricePerPeriod
+                                    period={period}
+                                    price={addOnPrice}
+                                    before="+"
+                                    classes="summary__addons__price"
+                                />
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div className="summary__total">
+                    <span className="summary__total__text">
+                        Total ({periodTotal()})
+                    </span>
+
+                    <span className="summary__total__price">
+                        R$ {total()}/{period === "month" ? "mês" : "ano"}
+                    </span>
+                </div>
             </div>
 
-            <div className="summary__total">
-                <span className="summary__total__text">
-                    Total ({periodTotal()})
-                </span>
-
-                <span className="summary__total__price">
-                    +R$ 50,00/mês
-                </span>
-            </div>
+            <Buttons
+                step={step}
+                setStep={setStep}
+                nextStep={nextStep}
+                nextText="Confirmar"
+            />
         </>
     );
 }
