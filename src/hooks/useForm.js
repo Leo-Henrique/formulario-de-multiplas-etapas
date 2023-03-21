@@ -29,7 +29,7 @@ export default function useForm(type) {
         if (!value.length) {
             setError("Este campo é obrigatório!");
             return false;
-        } else if (types[type] && !types[type].regex.test(value)) {
+        } else if (types[type] && !value.match(types[type].regex)) {
             setError(types[type].message);
             return false;
         } else {
