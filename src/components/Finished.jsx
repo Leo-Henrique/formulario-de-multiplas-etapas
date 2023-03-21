@@ -1,7 +1,10 @@
 import React from "react";
 import SVGThankYou from "../assets/icon-thank-you.svg";
+import { PlanContext } from "../PlanContext";
 
 export default function Finished() {
+    const { personal } = React.useContext(PlanContext);
+
     return (
         <section className="finished">
             <div className="finished__icon">
@@ -9,7 +12,7 @@ export default function Finished() {
             </div>
 
             <h1 className="finished__title">
-                Obrigado!
+                Obrigado, {personal.name}!
             </h1>
 
             <p className="finished__desc">

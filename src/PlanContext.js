@@ -4,6 +4,7 @@ import { complements } from "./components/AddOns";
 
 export const PlanContext = React.createContext();
 export const planInfos = () => {
+    const [personal, setPersonal] = React.useState(null);
     const { 
         id: planId,
         title: planTitle, 
@@ -19,6 +20,8 @@ export const planInfos = () => {
     const [period, setPeriod] = React.useState("month");
 
     return {
+        personal,
+        setPersonal,
         plan,
         setPlan,
         addOns,

@@ -40,6 +40,7 @@ export default function useForm(type) {
 
     return {
         value,
+        setValue,
         change,
         error,
         validate: () => validate()

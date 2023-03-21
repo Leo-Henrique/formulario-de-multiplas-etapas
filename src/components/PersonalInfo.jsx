@@ -25,18 +25,34 @@ export function PersonalInfo() {
             state: useForm("tel"),
         }
     ];
-    const { step, setStep } = React.useContext(PlanContext);
+    const { personal, setPersonal, step, setStep } = React.useContext(PlanContext);
     const nextStep = () => {
         const validations = Object.values(fields).map(input => input.state.validate());
         const validated = validations.every(validation => validation);
 
-        if (validated) setStep(step + 1);
+        console.log(validations)
+
+        if (validated) {
+            setPersonal(() => {
+                let obj = {};
+
+                fields.forEach(field => {
+                    obj[field.id] = field.state.value;
+                });
+                return obj;
+            });
+            setStep(step + 1);
+        };
     }
+
+    React.useEffect(() => {
+        if (personal) fields.forEach(field => field.state.setValue(personal[field.id]));
+    }, []);
 
     return (
         <>
             <div className="infos__list">
-                {fields.map(({ id, label, placeholder, state, ref }, index) => (
+                {fields.map(({ id, label, placeholder, state }, index) => (
                     <div key={id}
                     className="infos__item">
                         <div className="infos__info">
@@ -58,7 +74,6 @@ export function PersonalInfo() {
                         value={state.value}
                         onChange={state.change}
                         autoFocus={index === 0 && true}
-                        ref={ref}
                         />
                     </div>
                 ))}
