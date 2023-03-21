@@ -3,15 +3,15 @@ import React from 'react'
 const msg = (type) => `Por favor, digite um ${type} válido!`;
 const types = {
     name: {
-        regex: /[a-z]/gi,
+        regex: /^[a-zÀ-öù-Ź]+$/gi,
         message: msg("nome"),
     },
     email: {
-        regex: /[a-z]/gi,
+        regex: /^[\w\-.]+@[a-z]+\.+[a-z]+(\.[a-z]+)?$/gi,
         message: msg("e-mail"),
     },
     tel: {
-        regex: /\d/g,
+        regex: /^\(?(\d{2})?\)?\s?9\d{4}\s?-?\d{4}$/g,
         message: msg("número de telefone"),
     }
 }

@@ -8,8 +8,8 @@ export function PersonalInfo() {
     const fields = [
         {
             id: "name",
-            label: "Nome",
-            placeholder: `${ex} Leonardo Henrique`,
+            label: "Primeiro nome",
+            placeholder: `${ex} Leonardo`,
             state: useForm("name"),
         },
         {
@@ -29,8 +29,6 @@ export function PersonalInfo() {
     const nextStep = () => {
         const validations = Object.values(fields).map(input => input.state.validate());
         const validated = validations.every(validation => validation);
-
-        console.log(validations)
 
         if (validated) {
             setPersonal(() => {
