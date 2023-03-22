@@ -2,6 +2,7 @@ import React from "react";
 import { PlanContext } from "../PlanContext";
 import { Buttons } from "./Buttons";
 import useForm from "../hooks/useForm";
+import useAnimateComponent from "../hooks/useAnimateComponent";
 
 export function PersonalInfo() {
     const ex = "p. ex.";
@@ -25,7 +26,8 @@ export function PersonalInfo() {
             state: useForm("tel"),
         }
     ];
-    const { personal, setPersonal, step, setStep } = React.useContext(PlanContext);
+    const { personal, setPersonal, step, setStep, parent } = React.useContext(PlanContext);
+    const animation = useAnimateComponent("fadeRight", parent, () => setStep(step + 1));
     const nextStep = () => {
         const validations = Object.values(fields).map(input => input.state.validate());
         const validated = validations.every(validation => validation);
@@ -39,7 +41,7 @@ export function PersonalInfo() {
                 });
                 return obj;
             });
-            setStep(step + 1);
+            animation();
         };
     }
 
@@ -77,9 +79,7 @@ export function PersonalInfo() {
                 ))}
             </div>
 
-            <Buttons step={step}
-            setStep={setStep}
-            nextStep={nextStep} />
+            <Buttons nextStep={nextStep} />
         </>
     );
 }

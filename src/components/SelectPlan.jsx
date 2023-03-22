@@ -121,7 +121,7 @@ export function SelectPlan() {
                 </div>
             </div>
 
-            <Buttons step={step} setStep={setStep} nextStep={nextStep} />
+            <Buttons nextStep={nextStep} />
         </>
     );
 }

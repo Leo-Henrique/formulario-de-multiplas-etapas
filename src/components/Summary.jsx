@@ -69,12 +69,7 @@ export default function Summary(props) {
                 </div>
             </div>
 
-            <Buttons
-                step={step}
-                setStep={setStep}
-                nextStep={nextStep}
-                nextText="Confirmar"
-            />
+            <Buttons nextStep={nextStep} nextText="Confirmar" />
         </>
     );
 }

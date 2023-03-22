@@ -95,7 +95,7 @@ export function AddOns() {
                 })}
             </ul>
 
-            <Buttons step={step} setStep={setStep} nextStep={nextStep} />
+            <Buttons nextStep={nextStep} />
         </>
     );
 }

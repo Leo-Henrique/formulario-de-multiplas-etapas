@@ -6,6 +6,7 @@ import { AddOns } from "./components/AddOns";
 import Summary from "./components/Summary";
 import Finished from "./components/Finished";
 import { PlanContext, planInfos } from "./PlanContext";
+import LeoAnimate from "leo-animate.js";
 
 export default function App({ card }) {
     const steps = [
@@ -35,13 +36,16 @@ export default function App({ card }) {
         },
     ];
     const [step, setStep] = React.useState(0);
-    const previousStep = () => setStep(step - 1);
+    const parent = React.useRef();
 
-    React.useEffect(() => ["card", "container"].forEach(name => card.classList.add(name)), []);
+    React.useEffect(() => {
+        ["card", "container"].forEach(name => card.classList.add(name));
+        new LeoAnimate();
+    }, []);
 
     return (
         <>
-            <ul className="card__steps">
+            <ul className="card__steps" data-animate="fadeDown">
                 {steps.map(({ title }, index) => {
                     const id = index + 1;
                     const active = () => index === step ? " --active" : "";
@@ -65,18 +69,19 @@ export default function App({ card }) {
                 ...planInfos(),
                 step,
                 setStep,
+                parent
             }}>
                 {step !== null ? (
-                    <form className="card__form">
-                        <h1 className="card__title">
+                    <form className="card__form" ref={parent}>
+                        <h1 className="card__title" data-animate="fadeDown" data-animate-id="title">
                             {steps[step].title}
                         </h1>
 
-                        <p className="card__desc">
+                        <p className="card__desc" data-animate="fadeDown" data-animate-sync="title">
                             {steps[step].desc}
                         </p>
 
-                        <fieldset className={steps[step].class}>
+                        <fieldset className={steps[step].class} data-animate={step === 0 ? "fadeDown" : null}>
                             {steps[step].component}
                         </fieldset>
                     </form>

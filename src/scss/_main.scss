@@ -21,6 +21,7 @@ body {
     border-radius: $borderRadius;
     box-shadow: $cardShadow;
     overflow-y: auto;
+    overflow-x: hidden;
     @include scrollbar;
 
     @include breakpoint("lg") {
@@ -102,6 +103,16 @@ body {
         display: flex;
         flex-direction: column;
         @include padding(6rem 10rem 0);
+
+        @include transition("global", opacity, transform);
+        &.--fadeLeft {
+            opacity: 0;
+            transform: translate3D(-15px, 0, 0);
+        }
+        &.--fadeRight {
+            opacity: 0;
+            transform: translate3D(15px, 0, 0);
+        }
         @include breakpoint("lg") {
             display: initial;
             @include card;
@@ -109,7 +120,6 @@ body {
         @include breakpoint("sm") {
             padding: 3rem 2rem;
         }
-
         fieldset {
             flex: 1;
             display: flex;
