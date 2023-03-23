@@ -2,9 +2,10 @@ import React from "react";
 import PricePerPeriod from "./Helpers/PricePerPeriod";
 import { PlanContext } from "../PlanContext";
 import { Buttons } from "./Buttons";
+import useAnimateComponent from "../hooks/useAnimateComponent";
 
 export default function Summary(props) {
-    const { plan, addOns, period, step, setStep } = React.useContext(PlanContext);
+    const { plan, addOns, period, step, setStep, parent } = React.useContext(PlanContext);
     const periodPlan = () => period == "month" ? "Mensal" : "Anual";
     const periodTotal = () => period == "month" ? "por mês" : "por ano";
     const total = () => {
@@ -13,7 +14,7 @@ export default function Summary(props) {
 
         return addOnsPrice.reduce((acc, item) => acc + item, planPrice);
     };
-    const changePlan = () => setStep(1);
+    const changePlan = useAnimateComponent(parent, () => setStep(1));
     const nextStep = () => setStep(null);
 
     return (
