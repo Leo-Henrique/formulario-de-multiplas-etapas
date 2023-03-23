@@ -81,7 +81,7 @@ export default function App({ card }) {
                             {steps[step].desc}
                         </p>
 
-                        <fieldset className={steps[step].class} data-animate={step === 0 ? "fadeDown" : null}>
+                        <fieldset className={steps[step].class}>
                             {steps[step].component}
                         </fieldset>
                     </form>

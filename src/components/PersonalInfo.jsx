@@ -27,7 +27,7 @@ export function PersonalInfo() {
         }
     ];
     const { personal, setPersonal, step, setStep, parent } = React.useContext(PlanContext);
-    const animation = useAnimateComponent("fadeRight", parent, () => setStep(step + 1));
+    const animation = useAnimateComponent(parent, () => setStep(step + 1));
     const nextStep = () => {
         const validations = Object.values(fields).map(input => input.state.validate());
         const validated = validations.every(validation => validation);
@@ -51,7 +51,7 @@ export function PersonalInfo() {
 
     return (
         <>
-            <div className="infos__list">
+            <div className="infos__list" data-animate={!personal ? "fadeDown" : null}>
                 {fields.map(({ id, label, placeholder, state }, index) => (
                     <div key={id}
                     className="infos__item">

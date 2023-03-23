@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function useAnimateComponent(animation, ref, callback) {
+export default function useAnimateComponent(ref, callback) {
     const [newCallback, setNewCallback] = React.useState(null);
 
     React.useEffect(() => {
@@ -11,10 +11,10 @@ export default function useAnimateComponent(animation, ref, callback) {
 
             if (!current.hasAttribute(attr)) {
                 current.setAttribute(attr, "");
-                current.classList.add(`--${animation}`);
+                current.classList.add("--hide");
                 setTimeout(() => {
                     callback();
-                    current.classList.remove(`--${animation}`);
+                    current.classList.remove("--hide");
                 }, duration);
                 setTimeout(() => current.removeAttribute(attr), duration * 2);
             }

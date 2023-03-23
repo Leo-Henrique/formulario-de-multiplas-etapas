@@ -105,13 +105,8 @@ body {
         @include padding(6rem 10rem 0);
 
         @include transition("global", opacity, transform);
-        &.--fadeLeft {
+        &.--hide {
             opacity: 0;
-            transform: translate3D(-15px, 0, 0);
-        }
-        &.--fadeRight {
-            opacity: 0;
-            transform: translate3D(15px, 0, 0);
         }
         @include breakpoint("lg") {
             display: initial;

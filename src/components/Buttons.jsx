@@ -3,13 +3,14 @@ import useAnimateComponent from "../hooks/useAnimateComponent";
 import { PlanContext } from "../PlanContext";
 
 export function Buttons({ nextStep, nextText = "Próximo" }) {
-    const { step, setStep, parent } = React.useContext(PlanContext);
+    const { personal, step, setStep, parent } = React.useContext(PlanContext);
     const previousStep = () => setStep(step - 1);
-    const previous = useAnimateComponent("fadeLeft", parent, previousStep);
-    const next = useAnimateComponent("fadeRight", parent, nextStep);
+    const previous = useAnimateComponent(parent, previousStep);
+    const next = useAnimateComponent(parent, nextStep);
 
     return (
-        <div className="buttons">
+        <div className="buttons"
+        data-animate={!personal ? "fadeDown" : null}>
             {step !== 0 ? (
                 <button
                     className="buttons__prev"

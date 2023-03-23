@@ -35,10 +35,8 @@
 @keyframes animation {
     from {
         opacity: 0;
-        transform: translate3D(15px, 0, 0);
     }
     to {
         opacity: 1;
-        transform: none;
     }
 }

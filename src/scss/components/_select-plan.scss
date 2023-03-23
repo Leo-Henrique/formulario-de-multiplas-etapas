@@ -63,6 +63,9 @@
         font-size: fontSize("small");
         font-weight: 400;
         margin-top: 0.2rem;
+        @include breakpoint("md") {
+            grid-column: 2;
+        }
     }
     &__toggle {
         display: flex;
